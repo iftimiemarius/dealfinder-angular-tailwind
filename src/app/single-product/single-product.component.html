@@ -1,0 +1,61 @@
+<div class="p-4">
+  <div class="p-4 border-2 border-gray-200 rounded-lg dark:border-gray-700">
+    <div *ngIf="currentProduct; else loading">
+      <div class="flex flex-wrap justify-evenly items-center">
+        <img class="max-w-full max-h-52" [src]="currentProduct.image">
+        <div class="relative overflow-x-auto">
+          <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <tbody>
+              <tr *ngFor="let spec of currentSpecs" class="bg-white border dark:bg-gray-800 dark:border-gray-700">
+                <th scope="row" class="px-6 py-4">
+                  {{ spec.tag }}
+                </th>
+                <td class="px-6 py-4">
+                  {{ spec.value }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="mb-4 text-lg text-black-500 md:text-xl dark:text-gray-400">{{ currentProduct.name }}</p>
+        <p class="mb-4 text-lg text-black-500 md:text-xl dark:text-gray-400">{{ currentProduct.min + " " + currentProduct.currency }}</p>
+      </div>
+    </div>
+
+    
+    <div *ngIf="currentListings | async as listings; else loading">
+      <div *ngFor="let listing of listings"  class="flex flex-wrap justify-evenly items-center">
+        <div class="max-w-sm rounded overflow-hidden shadow-lg">
+          <div class="px-6 py-4">
+            <div class="flex justify-between items-center">
+              <div class="border-b-2 border-neutral-100 py-3 dark:border-neutral-600 dark:text-neutral-50">
+                {{ listing.price + " " + listing.currency }}
+              </div>
+
+              <a (click)="goToURL(listing.url)" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Vezi produs</a>
+            </div>
+            <!-- DOMAIN -->
+            <div class="font-bold text-xl mb-2">{{ listing.domain }}</div>
+            <p class="text-gray-700 text-base">
+              {{ listing.name }}
+            </p>
+          </div>
+          <!-- VARIANTS -->
+          <!-- <div class="px-6 pt-4 pb-2">
+            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">128GB Stocare</span>
+            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">8GB RAM</span>
+          </div> -->
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+  <ng-template #loading>
+     <app-loading-spinner></app-loading-spinner>
+  </ng-template>
+</div>

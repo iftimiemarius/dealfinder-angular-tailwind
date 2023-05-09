@@ -1,0 +1,13 @@
+ <div class="flex items-center justify-center w-full h-80 xl:w-[21rem]">
+    <a routerLink="/{{'produs/' + product?.id}}" class="w-full h-80 xl:w-[21rem] block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+    <div class="flex items-center justify-center">
+       <h6 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white line-clamp-1">{{ product?.name }}</h6>
+    </div>
+    <div class="flex items-center justify-center">
+      <img class="max-w-full max-h-52" [src]="product?.image">
+    </div>
+    <div class="flex items-center justify-center">
+       <h6 class="mb-2 text-xl tracking-tight text-gray-900 dark:text-white line-clamp-2">{{ product?.min }} {{ product?.currency}}</h6>
+    </div>
+    </a>
+ </div>

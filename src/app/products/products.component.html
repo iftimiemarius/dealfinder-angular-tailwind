@@ -1,0 +1,42 @@
+
+<div class="p-4">
+   <div class="p-4 border-2 border-gray-200 rounded-lg dark:border-gray-700">
+
+    <!-- SORT DROPDOWN -->
+    <div *ngIf="sortingObjects | async as sortings" class="w-full xl:w-72">
+      <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Alege sortarea</label>
+      <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" (change)="onChange($event.target)">
+        <option selected="noSort">Standard</option>
+        <option *ngFor="let sorting of sortings" value="{{sorting.name}}" [ngValue]="sorting.name" [selected]="isSelected(sorting.name)">{{sorting.display}}</option>
+      </select>
+    </div>
+
+    <!-- PRODUCT CARDS -->
+    <div class="flex flex-wrap justify-evenly">
+      <div *ngFor="let product of currentProducts | async" class="w-full xl:w-auto p-1">
+        <app-product-card [product]="product"></app-product-card>
+      </div>
+    </div>
+    <div *ngIf="currentCountObject | async as currentCount">
+      <!-- <app-pagination [endpoint]="endpoint" [startIndex]="startIndex" [itemsPerPage]="itemsPerPage" [totalCount]="productsCount"></app-pagination> -->
+      <div class="flex items-center justify-between border-t border-gray-200 mt-4 bg-white px-4 py-3">
+        <div class="flex flex-1 items-center justify-between">
+          <div>
+            <p class="text-sm text-gray-700">
+              <span class="font-medium">{{ startIndex }}</span>
+              -
+              <span class="font-medium">{{ startIndex + currentProductsCount - 1 }}</span>
+              din
+              <span class="font-medium">{{ currentCount.data().count }}</span>
+            </p>
+          </div>
+
+          <div class="flex shrink">
+            <button [disabled]="!isPrevPageAvailable()" (click)="prevPage()" class="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Pagina anterioara</button>
+            <button [disabled]="!isNextPageAvailable()" (click)="nextPage()" class="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Pagina urmatoare</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

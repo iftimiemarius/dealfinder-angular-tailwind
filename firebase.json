@@ -1,0 +1,17 @@
+{
+  "hosting": {
+    "site": "ws-dealfinder",
+    "public": "dist/dealfinder-angular-tailwind",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "whiteroot-systems"
+  },
+  "targets": {
+    "whiteroot-systems": {
+      "hosting": {
+        "dealfinder-angular-tailwind": [
+          "ws-dealfinder"
+        ]
+      }
+    }
+  }
+}

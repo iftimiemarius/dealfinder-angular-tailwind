@@ -1,0 +1,23 @@
+.card-container {
+	display: none;
+}
+
+.active-card {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+
+.fade {
+	animation-name: fade;
+	animation-duration: 1s;
+}
+
+@keyframes fade {
+	from {
+		opacity: 0.4;
+	}
+	to {
+		opacity: 1;
+	}
+}
